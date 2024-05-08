@@ -26,7 +26,7 @@ void setup() {
   Serial.print(F("[SX1276] Initializing ... "));
   //int state = radio.begin(); //-121dBm
   //int state = radio.begin(868.0); //-20dBm
-  int state = radio.begin(915.0, 31.25, 12, 8, 18, 20, 8);
+  int state = radio.begin(915.0, 62.5, 12, 8, 0x30, 20, 8);
   //int state = radio.beginFSK(915.0, 4.8, 5.0, 31.25, 20);
   if (state == RADIOLIB_ERR_NONE) {
     Serial.println(F("init success!"));
@@ -68,15 +68,15 @@ void loop() {
   //       See example SX127x_Transmit_Interrupt for details
   //       on non-blocking transmission method.
 
-  // char output[40];
-  // sprintf(output, "Counter: %d", counter++);
+  char *output = "Hello";
+  //sprintf(output, "Counter: %d", counter++);
 
-  // int state = radio.transmit(output);
+  int state = radio.transmit(output);
 
   // you can also transmit byte array up to 256 bytes long
   
-  byte byteArr[] = {0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff};
-  int state = radio.transmit(byteArr, 13);
+  // byte byteArr[] = {0x2f, 0x2f, 0x2f, 0x2f, 0x2f, 0x2f, 0x2f, 0x2f};
+  // int state = radio.transmit(byteArr, 8);
   
 
   if (state == RADIOLIB_ERR_NONE) {
